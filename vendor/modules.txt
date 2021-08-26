@@ -23,6 +23,10 @@ github.com/apparentlymart/go-cidr/cidr
 github.com/apparentlymart/go-textseg/textseg
 # github.com/armon/go-radix v1.0.0
 github.com/armon/go-radix
+# github.com/awnumar/memguard v0.17.1
+github.com/awnumar/memguard
+github.com/awnumar/memguard/core
+github.com/awnumar/memguard/memcall
 # github.com/aws/aws-sdk-go v1.36.1
 github.com/aws/aws-sdk-go/aws
 github.com/aws/aws-sdk-go/aws/arn
@@ -77,6 +81,9 @@ github.com/bgentry/speakeasy
 github.com/blang/semver
 # github.com/davecgh/go-spew v1.1.1
 github.com/davecgh/go-spew/spew
+# github.com/davrodpin/mole v1.0.2-0.20210917195927-fb64add5a0ff
+## explicit
+github.com/davrodpin/mole/tunnel
 # github.com/fatih/color v1.7.0
 github.com/fatih/color
 # github.com/golang/groupcache v0.0.0-20200121045136-8c9f03a8e57e
@@ -121,7 +128,7 @@ github.com/hashicorp/go-safetemp
 github.com/hashicorp/go-uuid
 # github.com/hashicorp/go-version v1.2.0
 github.com/hashicorp/go-version
-# github.com/hashicorp/hcl v0.0.0-20170504190234-a4b07c25de5f
+# github.com/hashicorp/hcl v1.0.0
 github.com/hashicorp/hcl
 github.com/hashicorp/hcl/hcl/ast
 github.com/hashicorp/hcl/hcl/parser
@@ -202,6 +209,10 @@ github.com/jmespath/go-jmespath
 github.com/jstemmer/go-junit-report
 github.com/jstemmer/go-junit-report/formatter
 github.com/jstemmer/go-junit-report/parser
+# github.com/kevinburke/ssh_config v0.0.0-20190630040420-2e50c441276c
+github.com/kevinburke/ssh_config
+# github.com/konsorten/go-windows-terminal-sequences v1.0.3
+github.com/konsorten/go-windows-terminal-sequences
 # github.com/lib/pq v1.9.0
 ## explicit
 github.com/lib/pq
@@ -223,12 +234,14 @@ github.com/mitchellh/go-homedir
 github.com/mitchellh/go-testing-interface
 # github.com/mitchellh/go-wordwrap v1.0.0
 github.com/mitchellh/go-wordwrap
-# github.com/mitchellh/mapstructure v1.4.0
+# github.com/mitchellh/mapstructure v1.4.1
 github.com/mitchellh/mapstructure
 # github.com/mitchellh/reflectwalk v1.0.1
 github.com/mitchellh/reflectwalk
 # github.com/oklog/run v1.0.0
 github.com/oklog/run
+# github.com/pelletier/go-buffruneio v0.2.0
+github.com/pelletier/go-buffruneio
 # github.com/posener/complete v1.2.1
 github.com/posener/complete
 github.com/posener/complete/cmd
@@ -237,6 +250,8 @@ github.com/posener/complete/match
 # github.com/sean-/postgresql-acl v0.0.0-20161225120419-d10489e5d217
 ## explicit
 github.com/sean-/postgresql-acl
+# github.com/sirupsen/logrus v1.6.0
+github.com/sirupsen/logrus
 # github.com/spf13/afero v1.2.2
 github.com/spf13/afero
 github.com/spf13/afero/mem
@@ -285,23 +300,38 @@ gocloud.dev/internal/openurl
 gocloud.dev/postgres
 gocloud.dev/postgres/awspostgres
 gocloud.dev/postgres/gcppostgres
-# golang.org/x/crypto v0.0.0-20201203163018-be400aefbc4c
+# golang.org/x/crypto v0.0.0-20210817164053-32db794688a5
+## explicit
 golang.org/x/crypto/bcrypt
+golang.org/x/crypto/blake2b
 golang.org/x/crypto/blowfish
 golang.org/x/crypto/cast5
+golang.org/x/crypto/chacha20
+golang.org/x/crypto/curve25519
+golang.org/x/crypto/curve25519/internal/field
+golang.org/x/crypto/ed25519
+golang.org/x/crypto/ed25519/internal/edwards25519
+golang.org/x/crypto/internal/subtle
+golang.org/x/crypto/nacl/secretbox
 golang.org/x/crypto/openpgp
 golang.org/x/crypto/openpgp/armor
 golang.org/x/crypto/openpgp/elgamal
 golang.org/x/crypto/openpgp/errors
 golang.org/x/crypto/openpgp/packet
 golang.org/x/crypto/openpgp/s2k
+golang.org/x/crypto/poly1305
+golang.org/x/crypto/salsa20/salsa
+golang.org/x/crypto/ssh
+golang.org/x/crypto/ssh/agent
+golang.org/x/crypto/ssh/internal/bcrypt_pbkdf
+golang.org/x/crypto/ssh/knownhosts
 # golang.org/x/lint v0.0.0-20200302205851-738671d3881b
 golang.org/x/lint
 golang.org/x/lint/golint
 # golang.org/x/mod v0.4.0
 golang.org/x/mod/module
 golang.org/x/mod/semver
-# golang.org/x/net v0.0.0-20201202161906-c7110b5ffcbb
+# golang.org/x/net v0.0.0-20210226172049-e18ecbb05110
 golang.org/x/net/context
 golang.org/x/net/context/ctxhttp
 golang.org/x/net/http/httpguts
@@ -318,9 +348,12 @@ golang.org/x/oauth2/google
 golang.org/x/oauth2/internal
 golang.org/x/oauth2/jws
 golang.org/x/oauth2/jwt
-# golang.org/x/sys v0.0.0-20201202213521-69691e467435
+# golang.org/x/sys v0.0.0-20210823070655-63515b42dcdf
+## explicit
+golang.org/x/sys/cpu
 golang.org/x/sys/internal/unsafeheader
 golang.org/x/sys/unix
+golang.org/x/sys/windows
 # golang.org/x/text v0.3.4
 golang.org/x/text/secure/bidirule
 golang.org/x/text/transform
