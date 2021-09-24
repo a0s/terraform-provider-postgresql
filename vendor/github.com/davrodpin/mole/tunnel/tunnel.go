@@ -40,12 +40,10 @@ type Server struct {
 // NewServer creates a new instance of Server using $HOME/.ssh/config to
 // resolve the missing connection attributes (e.g. user, hostname, port, key
 // and ssh agent) required to connect to the remote server, if any.
-func NewServer(user, address, key, sshAgent, cfgPath string) (*Server, error) {
+func NewServer(user, address, key, sshAgent string) (*Server, error) {
 	var host string
 	var hostname string
 	var port string
-	var c *SSHConfigFile
-	var err error
 
 	host = address
 	if strings.Contains(host, ":") {
@@ -54,17 +52,16 @@ func NewServer(user, address, key, sshAgent, cfgPath string) (*Server, error) {
 		port = args[1]
 	}
 
-	if cfgPath == "" {
-		c = NewEmptySSHConfigStruct()
-	} else {
-		c, err = NewSSHConfigFile(cfgPath)
-		if err != nil {
-			if !errors.Is(err, os.ErrNotExist) {
-				return nil, fmt.Errorf("error accessing %s: %v", host, err)
-			} else {
-				c = NewEmptySSHConfigStruct()
-			}
+	c, err := NewSSHConfigFile()
+	if err != nil {
+		if !errors.Is(err, os.ErrNotExist) {
+			return nil, fmt.Errorf("error accessing %s: %v", host, err)
 		}
+	}
+
+	// If ssh config file doesnt exists, create an empty ssh config struct to avoid nil pointer deference
+	if errors.Is(err, os.ErrNotExist) {
+		c = NewEmptySSHConfigStruct()
 	}
 
 	h := c.Get(host)
@@ -204,11 +201,11 @@ type Tunnel struct {
 }
 
 // New creates a new instance of Tunnel.
-func New(tunnelType string, server *Server, source, destination []string, config string) (*Tunnel, error) {
+func New(tunnelType string, server *Server, source, destination []string) (*Tunnel, error) {
 	var channels []*SSHChannel
 	var err error
 
-	channels, err = buildSSHChannels(server.Name, tunnelType, source, destination, config)
+	channels, err = buildSSHChannels(server.Name, tunnelType, source, destination)
 	if err != nil {
 		return nil, err
 	}
@@ -248,15 +245,7 @@ func (t *Tunnel) Start() error {
 
 				log.Debugf("restablishing the tunnel after disconnection: %s", t)
 
-				// The reconnecion must happens on a goroutine to support the scenario
-				// where tunnel.Stop() is called while the tunnel.connect() is getting
-				// executed.
-				//
-				// In an event where tunnel.reconnect receives data from any point of the
-				// code rather than tunnel.dial(), which is evoked by tunnel.connect()
-				// this code needs to be updated to make sure tunnel.connect() is not
-				// schedule in two goroutines at the same time.
-				go t.connect()
+				t.connect()
 			}
 		case err := <-t.done:
 			if t.client != nil {
@@ -459,33 +448,14 @@ func (t *Tunnel) keepAlive() {
 	}
 }
 
-// Channels returns a copy of all channels configured for the tunnel.
-func (t *Tunnel) Channels() []*SSHChannel {
-	channels := make([]*SSHChannel, len(t.channels))
-
-	for i, c := range t.channels {
-		cc := *c
-		channels[i] = &cc
-	}
-
-	return channels
-}
-
 func sshClientConfig(server Server) (*ssh.ClientConfig, error) {
 	var signers []ssh.Signer
 
-	if server.Key == nil && server.SSHAgent == "" {
-		return nil, fmt.Errorf("at least one authentication method (key or ssh agent) must be present.")
+	signer, err := server.Key.Parse()
+	if err != nil {
+		return nil, err
 	}
-
-	if server.Key != nil {
-		signer, err := server.Key.Parse()
-		if err != nil {
-			log.WithError(err).Warn("invalid key. Skipping authentication using key.")
-		} else {
-			signers = append(signers, signer)
-		}
-	}
+	signers = append(signers, signer)
 
 	if server.SSHAgent != "" {
 		if _, err := os.Stat(server.SSHAgent); err == nil {
@@ -497,10 +467,6 @@ func sshClientConfig(server Server) (*ssh.ClientConfig, error) {
 		} else {
 			log.WithError(err).Warnf("%s cannot be read. Will not try to talk to ssh agent", server.SSHAgent)
 		}
-	}
-
-	if len(signers) == 0 {
-		return nil, fmt.Errorf("at least one working authentication method (key or ssh agent) must be present.")
 	}
 
 	clb, err := knownHostsCallback(server.Insecure)
@@ -520,8 +486,6 @@ func sshClientConfig(server Server) (*ssh.ClientConfig, error) {
 
 func copyConn(writer, reader net.Conn) {
 	_, err := io.Copy(writer, reader)
-	defer writer.Close()
-	defer reader.Close()
 	if err != nil {
 		log.Errorf("%v", err)
 	}
@@ -579,11 +543,11 @@ func expandAddress(address string) string {
 	return address
 }
 
-func buildSSHChannels(serverName, channelType string, source, destination []string, cfgPath string) ([]*SSHChannel, error) {
+func buildSSHChannels(serverName, channelType string, source, destination []string) ([]*SSHChannel, error) {
 	// if source and destination were not given, try to find the addresses from the
 	// SSH configuration file.
 	if len(source) == 0 && len(destination) == 0 {
-		f, err := getForward(channelType, serverName, cfgPath)
+		f, err := getForward(channelType, serverName)
 		if err != nil {
 			return nil, err
 		}
@@ -640,10 +604,10 @@ func buildSSHChannels(serverName, channelType string, source, destination []stri
 	return channels, nil
 }
 
-func getForward(channelType, serverName string, cfgPath string) (*ForwardConfig, error) {
+func getForward(channelType, serverName string) (*ForwardConfig, error) {
 	var f *ForwardConfig
 
-	cfg, err := NewSSHConfigFile(cfgPath)
+	cfg, err := NewSSHConfigFile()
 	if err != nil {
 		return nil, fmt.Errorf("error reading ssh configuration file: %v", err)
 	}

@@ -1,8 +1,3 @@
-## unreleased
-
-* Fix regression where `*time.Time` value would be set to empty and not be sent 
-  to decode hooks properly [GH-232]
-
 ## 1.4.0
 
 * A new decode hook type `DecodeHookFuncValue` has been added that has
