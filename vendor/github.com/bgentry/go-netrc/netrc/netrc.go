@@ -45,7 +45,7 @@ type Netrc struct {
 
 // FindMachine returns the Machine in n named by name. If a machine named by
 // name exists, it is returned. If no Machine with name name is found and there
-// is a ``default'' machine, the ``default'' machine is returned. Otherwise, nil
+// is a “default” machine, the “default” machine is returned. Otherwise, nil
 // is returned.
 func (n *Netrc) FindMachine(name string) (m *Machine) {
 	// TODO(bgentry): not safe for concurrency
@@ -487,9 +487,9 @@ func ParseFile(filename string) (*Netrc, error) {
 }
 
 // Parse parses from the the Reader r as a netrc file and returns the set of
-// machine information and macros defined in it. The ``default'' machine,
+// machine information and macros defined in it. The “default” machine,
 // which is intended to be used when no machine name matches, is identified
-// by an empty machine name. There can be only one ``default'' machine.
+// by an empty machine name. There can be only one “default” machine.
 //
 // If there is a parsing error, an Error is returned.
 func Parse(r io.Reader) (*Netrc, error) {
@@ -499,8 +499,8 @@ func Parse(r io.Reader) (*Netrc, error) {
 // FindMachine parses the netrc file identified by filename and returns the
 // Machine named by name. If a problem occurs parsing the file at filename, an
 // error is returned. If a machine named by name exists, it is returned. If no
-// Machine with name name is found and there is a ``default'' machine, the
-// ``default'' machine is returned. Otherwise, nil is returned.
+// Machine with name name is found and there is a “default” machine, the
+// “default” machine is returned. Otherwise, nil is returned.
 func FindMachine(filename, name string) (m *Machine, err error) {
 	n, err := ParseFile(filename)
 	if err != nil {

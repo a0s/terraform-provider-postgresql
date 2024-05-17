@@ -72,8 +72,7 @@ func lBits(l uint32) int {
 // Encode encodes the length offset. The length offset l can be compute by
 // subtracting minMatchLen (2) from the actual length.
 //
-//   l = length - minMatchLen
-//
+//	l = length - minMatchLen
 func (lc *lengthCodec) Encode(e *rangeEncoder, l uint32, posState uint32,
 ) (err error) {
 	if l > maxMatchLen-minMatchLen {

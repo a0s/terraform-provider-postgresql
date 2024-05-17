@@ -8,35 +8,35 @@
 //
 // For product documentation, see: https://developers.google.com/cloud-sql/
 //
-// Creating a client
+// # Creating a client
 //
 // Usage example:
 //
-//   import "google.golang.org/api/sqladmin/v1beta4"
-//   ...
-//   ctx := context.Background()
-//   sqladminService, err := sqladmin.NewService(ctx)
+//	import "google.golang.org/api/sqladmin/v1beta4"
+//	...
+//	ctx := context.Background()
+//	sqladminService, err := sqladmin.NewService(ctx)
 //
 // In this example, Google Application Default Credentials are used for authentication.
 //
 // For information on how to create and obtain Application Default Credentials, see https://developers.google.com/identity/protocols/application-default-credentials.
 //
-// Other authentication options
+// # Other authentication options
 //
 // By default, all available scopes (see "Constants") are used to authenticate. To restrict scopes, use option.WithScopes:
 //
-//   sqladminService, err := sqladmin.NewService(ctx, option.WithScopes(sqladmin.SqlserviceAdminScope))
+//	sqladminService, err := sqladmin.NewService(ctx, option.WithScopes(sqladmin.SqlserviceAdminScope))
 //
 // To use an API key for authentication (note: some APIs do not support API keys), use option.WithAPIKey:
 //
-//   sqladminService, err := sqladmin.NewService(ctx, option.WithAPIKey("AIza..."))
+//	sqladminService, err := sqladmin.NewService(ctx, option.WithAPIKey("AIza..."))
 //
 // To use an OAuth token (e.g., a user token obtained via a three-legged OAuth flow), use option.WithTokenSource:
 //
-//   config := &oauth2.Config{...}
-//   // ...
-//   token, err := config.Exchange(ctx, ...)
-//   sqladminService, err := sqladmin.NewService(ctx, option.WithTokenSource(config.TokenSource(ctx, token)))
+//	config := &oauth2.Config{...}
+//	// ...
+//	token, err := config.Exchange(ctx, ...)
+//	sqladminService, err := sqladmin.NewService(ctx, option.WithTokenSource(config.TokenSource(ctx, token)))
 //
 // See https://godoc.org/google.golang.org/api/option/ for details on options.
 package sqladmin // import "google.golang.org/api/sqladmin/v1beta4"
@@ -9266,11 +9266,17 @@ func (r *ProjectsInstancesService) StartExternalSync(project string, instance st
 // SyncMode sets the optional parameter "syncMode": External sync mode.
 //
 // Possible values:
-//   "EXTERNAL_SYNC_MODE_UNSPECIFIED" - Unknown external sync mode, will
+//
+//	"EXTERNAL_SYNC_MODE_UNSPECIFIED" - Unknown external sync mode, will
+//
 // be defaulted to ONLINE mode
-//   "ONLINE" - Online external sync will set up replication after
+//
+//	"ONLINE" - Online external sync will set up replication after
+//
 // initial data external sync
-//   "OFFLINE" - Offline external sync only dumps and loads a one-time
+//
+//	"OFFLINE" - Offline external sync only dumps and loads a one-time
+//
 // snapshot of the primary instance's data
 func (c *ProjectsInstancesStartExternalSyncCall) SyncMode(syncMode string) *ProjectsInstancesStartExternalSyncCall {
 	c.urlParams_.Set("syncMode", syncMode)
@@ -9436,11 +9442,17 @@ func (r *ProjectsInstancesService) VerifyExternalSyncSettings(project string, in
 // SyncMode sets the optional parameter "syncMode": External sync mode
 //
 // Possible values:
-//   "EXTERNAL_SYNC_MODE_UNSPECIFIED" - Unknown external sync mode, will
+//
+//	"EXTERNAL_SYNC_MODE_UNSPECIFIED" - Unknown external sync mode, will
+//
 // be defaulted to ONLINE mode
-//   "ONLINE" - Online external sync will set up replication after
+//
+//	"ONLINE" - Online external sync will set up replication after
+//
 // initial data external sync
-//   "OFFLINE" - Offline external sync only dumps and loads a one-time
+//
+//	"OFFLINE" - Offline external sync only dumps and loads a one-time
+//
 // snapshot of the primary instance's data
 func (c *ProjectsInstancesVerifyExternalSyncSettingsCall) SyncMode(syncMode string) *ProjectsInstancesVerifyExternalSyncSettingsCall {
 	c.urlParams_.Set("syncMode", syncMode)

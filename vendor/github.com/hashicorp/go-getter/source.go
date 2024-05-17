@@ -10,10 +10,10 @@ import (
 // the subdir and the subdir.
 //
 // ex:
-//   dom.com/path/?q=p               => dom.com/path/?q=p, ""
-//   proto://dom.com/path//*?q=p     => proto://dom.com/path?q=p, "*"
-//   proto://dom.com/path//path2?q=p => proto://dom.com/path?q=p, "path2"
 //
+//	dom.com/path/?q=p               => dom.com/path/?q=p, ""
+//	proto://dom.com/path//*?q=p     => proto://dom.com/path?q=p, "*"
+//	proto://dom.com/path//path2?q=p => proto://dom.com/path?q=p, "path2"
 func SourceDirSubdir(src string) (string, string) {
 
 	// URL might contains another url in query parameters

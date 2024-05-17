@@ -9,7 +9,7 @@ files each time the Session is created. Sharing the Session value across all of
 your service clients will ensure the configuration is loaded the fewest number
 of times possible.
 
-Sessions options from Shared Config
+# Sessions options from Shared Config
 
 By default NewSession will only load credentials from the shared credentials
 file (~/.aws/credentials). If the AWS_SDK_LOAD_CONFIG environment variable is
@@ -19,27 +19,27 @@ values from the shared config (~/.aws/config) and shared credentials
 SharedConfigState set to SharedConfigEnable will create the session as if the
 AWS_SDK_LOAD_CONFIG environment variable was set.
 
-Credential and config loading order
+# Credential and config loading order
 
 The Session will attempt to load configuration and credentials from the
 environment, configuration files, and other credential sources. The order
 configuration is loaded in is:
 
-  * Environment Variables
-  * Shared Credentials file
-  * Shared Configuration file (if SharedConfig is enabled)
-  * EC2 Instance Metadata (credentials only)
+  - Environment Variables
+  - Shared Credentials file
+  - Shared Configuration file (if SharedConfig is enabled)
+  - EC2 Instance Metadata (credentials only)
 
 The Environment variables for credentials will have precedence over shared
 config even if SharedConfig is enabled. To override this behavior, and use
 shared config credentials instead specify the session.Options.Profile, (e.g.
 when using credential_source=Environment to assume a role).
 
-  sess, err := session.NewSessionWithOptions(session.Options{
-	  Profile: "myProfile",
-  })
+	  sess, err := session.NewSessionWithOptions(session.Options{
+		  Profile: "myProfile",
+	  })
 
-Creating Sessions
+# Creating Sessions
 
 Creating a Session without additional options will load credentials region, and
 profile loaded from the environment and shared config automatically. See,
@@ -48,7 +48,6 @@ by Session.
 
 	// Create Session
 	sess, err := session.NewSession()
-
 
 When creating Sessions optional aws.Config values can be passed in that will
 override the default, or loaded, config values the Session is being created
@@ -82,7 +81,7 @@ profile, or override the shared config state,  (AWS_SDK_LOAD_CONFIG).
 		SharedConfigState: session.SharedConfigEnable,
 	})
 
-Adding Handlers
+# Adding Handlers
 
 You can add handlers to a session to decorate API operation, (e.g. adding HTTP
 headers). All clients that use the Session receive a copy of the Session's
@@ -99,7 +98,7 @@ every requests made.
 			r.ClientInfo.ServiceName, r.Operation, r.Params)
 	})
 
-Shared Config Fields
+# Shared Config Fields
 
 By default the SDK will only load the shared credentials file's
 (~/.aws/credentials) credentials values, and all other config is provided by
@@ -131,7 +130,7 @@ other two fields.
 	; region only supported if SharedConfigEnabled.
 	region = us-east-1
 
-Assume Role configuration
+# Assume Role configuration
 
 The role_arn field allows you to configure the SDK to assume an IAM role using
 a set of credentials from another source. Such as when paired with static
@@ -146,19 +145,18 @@ specified, such as "source_profile", "credential_source", or
 	mfa_serial = <serial or mfa arn>
 	role_session_name = session_name
 
-
 The SDK supports assuming a role with MFA token. If "mfa_serial" is set, you
 must also set the Session Option.AssumeRoleTokenProvider. The Session will fail
 to load if the AssumeRoleTokenProvider is not specified.
 
-    sess := session.Must(session.NewSessionWithOptions(session.Options{
-        AssumeRoleTokenProvider: stscreds.StdinTokenProvider,
-    }))
+	sess := session.Must(session.NewSessionWithOptions(session.Options{
+	    AssumeRoleTokenProvider: stscreds.StdinTokenProvider,
+	}))
 
 To setup Assume Role outside of a session see the stscreds.AssumeRoleProvider
 documentation.
 
-Environment Variables
+# Environment Variables
 
 When a Session is created several environment variables can be set to adjust
 how the SDK functions, and what configuration data it loads when creating
@@ -246,17 +244,17 @@ The endpoint of the EC2 IMDS client can be configured via the environment
 variable, AWS_EC2_METADATA_SERVICE_ENDPOINT when creating the client with a
 Session. See Options.EC2IMDSEndpoint for more details.
 
-  AWS_EC2_METADATA_SERVICE_ENDPOINT=http://169.254.169.254
+	AWS_EC2_METADATA_SERVICE_ENDPOINT=http://169.254.169.254
 
 If using an URL with an IPv6 address literal, the IPv6 address
 component must be enclosed in square brackets.
 
-  AWS_EC2_METADATA_SERVICE_ENDPOINT=http://[::1]
+	AWS_EC2_METADATA_SERVICE_ENDPOINT=http://[::1]
 
 The custom EC2 IMDS endpoint can also be specified via the Session options.
 
-  sess, err := session.NewSessionWithOptions(session.Options{
-      EC2IMDSEndpoint: "http://[::1]",
-  })
+	sess, err := session.NewSessionWithOptions(session.Options{
+	    EC2IMDSEndpoint: "http://[::1]",
+	})
 */
 package session
