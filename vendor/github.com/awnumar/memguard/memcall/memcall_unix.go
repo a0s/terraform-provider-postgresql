@@ -1,3 +1,4 @@
+//go:build !windows && !darwin && !openbsd && !freebsd
 // +build !windows,!darwin,!openbsd,!freebsd
 
 package memcall

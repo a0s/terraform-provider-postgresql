@@ -10,35 +10,35 @@
 //
 // For product documentation, see: https://developers.google.com/storage/docs/json_api/
 //
-// Creating a client
+// # Creating a client
 //
 // Usage example:
 //
-//   import "google.golang.org/api/storage/v1"
-//   ...
-//   ctx := context.Background()
-//   storageService, err := storage.NewService(ctx)
+//	import "google.golang.org/api/storage/v1"
+//	...
+//	ctx := context.Background()
+//	storageService, err := storage.NewService(ctx)
 //
 // In this example, Google Application Default Credentials are used for authentication.
 //
 // For information on how to create and obtain Application Default Credentials, see https://developers.google.com/identity/protocols/application-default-credentials.
 //
-// Other authentication options
+// # Other authentication options
 //
 // By default, all available scopes (see "Constants") are used to authenticate. To restrict scopes, use option.WithScopes:
 //
-//   storageService, err := storage.NewService(ctx, option.WithScopes(storage.DevstorageReadWriteScope))
+//	storageService, err := storage.NewService(ctx, option.WithScopes(storage.DevstorageReadWriteScope))
 //
 // To use an API key for authentication (note: some APIs do not support API keys), use option.WithAPIKey:
 //
-//   storageService, err := storage.NewService(ctx, option.WithAPIKey("AIza..."))
+//	storageService, err := storage.NewService(ctx, option.WithAPIKey("AIza..."))
 //
 // To use an OAuth token (e.g., a user token obtained via a three-legged OAuth flow), use option.WithTokenSource:
 //
-//   config := &oauth2.Config{...}
-//   // ...
-//   token, err := config.Exchange(ctx, ...)
-//   storageService, err := storage.NewService(ctx, option.WithTokenSource(config.TokenSource(ctx, token)))
+//	config := &oauth2.Config{...}
+//	// ...
+//	token, err := config.Exchange(ctx, ...)
+//	storageService, err := storage.NewService(ctx, option.WithTokenSource(config.TokenSource(ctx, token)))
 //
 // See https://godoc.org/google.golang.org/api/option/ for details on options.
 package storage // import "google.golang.org/api/storage/v1"
@@ -3575,8 +3575,9 @@ func (c *BucketsGetCall) IfMetagenerationNotMatch(ifMetagenerationNotMatch int64
 // properties to return. Defaults to noAcl.
 //
 // Possible values:
-//   "full" - Include all properties.
-//   "noAcl" - Omit owner, acl and defaultObjectAcl properties.
+//
+//	"full" - Include all properties.
+//	"noAcl" - Omit owner, acl and defaultObjectAcl properties.
 func (c *BucketsGetCall) Projection(projection string) *BucketsGetCall {
 	c.urlParams_.Set("projection", projection)
 	return c
@@ -3967,14 +3968,22 @@ func (r *BucketsService) Insert(projectid string, bucket *Bucket) *BucketsInsert
 // predefined set of access controls to this bucket.
 //
 // Possible values:
-//   "authenticatedRead" - Project team owners get OWNER access, and
+//
+//	"authenticatedRead" - Project team owners get OWNER access, and
+//
 // allAuthenticatedUsers get READER access.
-//   "private" - Project team owners get OWNER access.
-//   "projectPrivate" - Project team members get access according to
+//
+//	"private" - Project team owners get OWNER access.
+//	"projectPrivate" - Project team members get access according to
+//
 // their roles.
-//   "publicRead" - Project team owners get OWNER access, and allUsers
+//
+//	"publicRead" - Project team owners get OWNER access, and allUsers
+//
 // get READER access.
-//   "publicReadWrite" - Project team owners get OWNER access, and
+//
+//	"publicReadWrite" - Project team owners get OWNER access, and
+//
 // allUsers get WRITER access.
 func (c *BucketsInsertCall) PredefinedAcl(predefinedAcl string) *BucketsInsertCall {
 	c.urlParams_.Set("predefinedAcl", predefinedAcl)
@@ -3986,16 +3995,26 @@ func (c *BucketsInsertCall) PredefinedAcl(predefinedAcl string) *BucketsInsertCa
 // object access controls to this bucket.
 //
 // Possible values:
-//   "authenticatedRead" - Object owner gets OWNER access, and
+//
+//	"authenticatedRead" - Object owner gets OWNER access, and
+//
 // allAuthenticatedUsers get READER access.
-//   "bucketOwnerFullControl" - Object owner gets OWNER access, and
+//
+//	"bucketOwnerFullControl" - Object owner gets OWNER access, and
+//
 // project team owners get OWNER access.
-//   "bucketOwnerRead" - Object owner gets OWNER access, and project
+//
+//	"bucketOwnerRead" - Object owner gets OWNER access, and project
+//
 // team owners get READER access.
-//   "private" - Object owner gets OWNER access.
-//   "projectPrivate" - Object owner gets OWNER access, and project team
+//
+//	"private" - Object owner gets OWNER access.
+//	"projectPrivate" - Object owner gets OWNER access, and project team
+//
 // members get access according to their roles.
-//   "publicRead" - Object owner gets OWNER access, and allUsers get
+//
+//	"publicRead" - Object owner gets OWNER access, and allUsers get
+//
 // READER access.
 func (c *BucketsInsertCall) PredefinedDefaultObjectAcl(predefinedDefaultObjectAcl string) *BucketsInsertCall {
 	c.urlParams_.Set("predefinedDefaultObjectAcl", predefinedDefaultObjectAcl)
@@ -4008,8 +4027,9 @@ func (c *BucketsInsertCall) PredefinedDefaultObjectAcl(predefinedDefaultObjectAc
 // full.
 //
 // Possible values:
-//   "full" - Include all properties.
-//   "noAcl" - Omit owner, acl and defaultObjectAcl properties.
+//
+//	"full" - Include all properties.
+//	"noAcl" - Omit owner, acl and defaultObjectAcl properties.
 func (c *BucketsInsertCall) Projection(projection string) *BucketsInsertCall {
 	c.urlParams_.Set("projection", projection)
 	return c
@@ -4255,8 +4275,9 @@ func (c *BucketsListCall) Prefix(prefix string) *BucketsListCall {
 // properties to return. Defaults to noAcl.
 //
 // Possible values:
-//   "full" - Include all properties.
-//   "noAcl" - Omit owner, acl and defaultObjectAcl properties.
+//
+//	"full" - Include all properties.
+//	"noAcl" - Omit owner, acl and defaultObjectAcl properties.
 func (c *BucketsListCall) Projection(projection string) *BucketsListCall {
 	c.urlParams_.Set("projection", projection)
 	return c
@@ -4671,14 +4692,22 @@ func (c *BucketsPatchCall) IfMetagenerationNotMatch(ifMetagenerationNotMatch int
 // predefined set of access controls to this bucket.
 //
 // Possible values:
-//   "authenticatedRead" - Project team owners get OWNER access, and
+//
+//	"authenticatedRead" - Project team owners get OWNER access, and
+//
 // allAuthenticatedUsers get READER access.
-//   "private" - Project team owners get OWNER access.
-//   "projectPrivate" - Project team members get access according to
+//
+//	"private" - Project team owners get OWNER access.
+//	"projectPrivate" - Project team members get access according to
+//
 // their roles.
-//   "publicRead" - Project team owners get OWNER access, and allUsers
+//
+//	"publicRead" - Project team owners get OWNER access, and allUsers
+//
 // get READER access.
-//   "publicReadWrite" - Project team owners get OWNER access, and
+//
+//	"publicReadWrite" - Project team owners get OWNER access, and
+//
 // allUsers get WRITER access.
 func (c *BucketsPatchCall) PredefinedAcl(predefinedAcl string) *BucketsPatchCall {
 	c.urlParams_.Set("predefinedAcl", predefinedAcl)
@@ -4690,16 +4719,26 @@ func (c *BucketsPatchCall) PredefinedAcl(predefinedAcl string) *BucketsPatchCall
 // object access controls to this bucket.
 //
 // Possible values:
-//   "authenticatedRead" - Object owner gets OWNER access, and
+//
+//	"authenticatedRead" - Object owner gets OWNER access, and
+//
 // allAuthenticatedUsers get READER access.
-//   "bucketOwnerFullControl" - Object owner gets OWNER access, and
+//
+//	"bucketOwnerFullControl" - Object owner gets OWNER access, and
+//
 // project team owners get OWNER access.
-//   "bucketOwnerRead" - Object owner gets OWNER access, and project
+//
+//	"bucketOwnerRead" - Object owner gets OWNER access, and project
+//
 // team owners get READER access.
-//   "private" - Object owner gets OWNER access.
-//   "projectPrivate" - Object owner gets OWNER access, and project team
+//
+//	"private" - Object owner gets OWNER access.
+//	"projectPrivate" - Object owner gets OWNER access, and project team
+//
 // members get access according to their roles.
-//   "publicRead" - Object owner gets OWNER access, and allUsers get
+//
+//	"publicRead" - Object owner gets OWNER access, and allUsers get
+//
 // READER access.
 func (c *BucketsPatchCall) PredefinedDefaultObjectAcl(predefinedDefaultObjectAcl string) *BucketsPatchCall {
 	c.urlParams_.Set("predefinedDefaultObjectAcl", predefinedDefaultObjectAcl)
@@ -4710,8 +4749,9 @@ func (c *BucketsPatchCall) PredefinedDefaultObjectAcl(predefinedDefaultObjectAcl
 // properties to return. Defaults to full.
 //
 // Possible values:
-//   "full" - Include all properties.
-//   "noAcl" - Omit owner, acl and defaultObjectAcl properties.
+//
+//	"full" - Include all properties.
+//	"noAcl" - Omit owner, acl and defaultObjectAcl properties.
 func (c *BucketsPatchCall) Projection(projection string) *BucketsPatchCall {
 	c.urlParams_.Set("projection", projection)
 	return c
@@ -5315,14 +5355,22 @@ func (c *BucketsUpdateCall) IfMetagenerationNotMatch(ifMetagenerationNotMatch in
 // predefined set of access controls to this bucket.
 //
 // Possible values:
-//   "authenticatedRead" - Project team owners get OWNER access, and
+//
+//	"authenticatedRead" - Project team owners get OWNER access, and
+//
 // allAuthenticatedUsers get READER access.
-//   "private" - Project team owners get OWNER access.
-//   "projectPrivate" - Project team members get access according to
+//
+//	"private" - Project team owners get OWNER access.
+//	"projectPrivate" - Project team members get access according to
+//
 // their roles.
-//   "publicRead" - Project team owners get OWNER access, and allUsers
+//
+//	"publicRead" - Project team owners get OWNER access, and allUsers
+//
 // get READER access.
-//   "publicReadWrite" - Project team owners get OWNER access, and
+//
+//	"publicReadWrite" - Project team owners get OWNER access, and
+//
 // allUsers get WRITER access.
 func (c *BucketsUpdateCall) PredefinedAcl(predefinedAcl string) *BucketsUpdateCall {
 	c.urlParams_.Set("predefinedAcl", predefinedAcl)
@@ -5334,16 +5382,26 @@ func (c *BucketsUpdateCall) PredefinedAcl(predefinedAcl string) *BucketsUpdateCa
 // object access controls to this bucket.
 //
 // Possible values:
-//   "authenticatedRead" - Object owner gets OWNER access, and
+//
+//	"authenticatedRead" - Object owner gets OWNER access, and
+//
 // allAuthenticatedUsers get READER access.
-//   "bucketOwnerFullControl" - Object owner gets OWNER access, and
+//
+//	"bucketOwnerFullControl" - Object owner gets OWNER access, and
+//
 // project team owners get OWNER access.
-//   "bucketOwnerRead" - Object owner gets OWNER access, and project
+//
+//	"bucketOwnerRead" - Object owner gets OWNER access, and project
+//
 // team owners get READER access.
-//   "private" - Object owner gets OWNER access.
-//   "projectPrivate" - Object owner gets OWNER access, and project team
+//
+//	"private" - Object owner gets OWNER access.
+//	"projectPrivate" - Object owner gets OWNER access, and project team
+//
 // members get access according to their roles.
-//   "publicRead" - Object owner gets OWNER access, and allUsers get
+//
+//	"publicRead" - Object owner gets OWNER access, and allUsers get
+//
 // READER access.
 func (c *BucketsUpdateCall) PredefinedDefaultObjectAcl(predefinedDefaultObjectAcl string) *BucketsUpdateCall {
 	c.urlParams_.Set("predefinedDefaultObjectAcl", predefinedDefaultObjectAcl)
@@ -5354,8 +5412,9 @@ func (c *BucketsUpdateCall) PredefinedDefaultObjectAcl(predefinedDefaultObjectAc
 // properties to return. Defaults to full.
 //
 // Possible values:
-//   "full" - Include all properties.
-//   "noAcl" - Omit owner, acl and defaultObjectAcl properties.
+//
+//	"full" - Include all properties.
+//	"noAcl" - Omit owner, acl and defaultObjectAcl properties.
 func (c *BucketsUpdateCall) Projection(projection string) *BucketsUpdateCall {
 	c.urlParams_.Set("projection", projection)
 	return c
@@ -8518,16 +8577,26 @@ func (r *ObjectsService) Compose(destinationBucket string, destinationObject str
 // to the destination object.
 //
 // Possible values:
-//   "authenticatedRead" - Object owner gets OWNER access, and
+//
+//	"authenticatedRead" - Object owner gets OWNER access, and
+//
 // allAuthenticatedUsers get READER access.
-//   "bucketOwnerFullControl" - Object owner gets OWNER access, and
+//
+//	"bucketOwnerFullControl" - Object owner gets OWNER access, and
+//
 // project team owners get OWNER access.
-//   "bucketOwnerRead" - Object owner gets OWNER access, and project
+//
+//	"bucketOwnerRead" - Object owner gets OWNER access, and project
+//
 // team owners get READER access.
-//   "private" - Object owner gets OWNER access.
-//   "projectPrivate" - Object owner gets OWNER access, and project team
+//
+//	"private" - Object owner gets OWNER access.
+//	"projectPrivate" - Object owner gets OWNER access, and project team
+//
 // members get access according to their roles.
-//   "publicRead" - Object owner gets OWNER access, and allUsers get
+//
+//	"publicRead" - Object owner gets OWNER access, and allUsers get
+//
 // READER access.
 func (c *ObjectsComposeCall) DestinationPredefinedAcl(destinationPredefinedAcl string) *ObjectsComposeCall {
 	c.urlParams_.Set("destinationPredefinedAcl", destinationPredefinedAcl)
@@ -8554,7 +8623,9 @@ func (c *ObjectsComposeCall) IfMetagenerationMatch(ifMetagenerationMatch int64) 
 // KmsKeyName sets the optional parameter "kmsKeyName": Resource name of
 // the Cloud KMS key, of the form
 // projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key,
-//  that will be used to encrypt the object. Overrides the object
+//
+//	that will be used to encrypt the object. Overrides the object
+//
 // metadata's kms_key_name value, if any.
 func (c *ObjectsComposeCall) KmsKeyName(kmsKeyName string) *ObjectsComposeCall {
 	c.urlParams_.Set("kmsKeyName", kmsKeyName)
@@ -8783,7 +8854,9 @@ func (r *ObjectsService) Copy(sourceBucket string, sourceObject string, destinat
 // "destinationKmsKeyName": Resource name of the Cloud KMS key, of the
 // form
 // projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key,
-//  that will be used to encrypt the object. Overrides the object
+//
+//	that will be used to encrypt the object. Overrides the object
+//
 // metadata's kms_key_name value, if any.
 func (c *ObjectsCopyCall) DestinationKmsKeyName(destinationKmsKeyName string) *ObjectsCopyCall {
 	c.urlParams_.Set("destinationKmsKeyName", destinationKmsKeyName)
@@ -8795,16 +8868,26 @@ func (c *ObjectsCopyCall) DestinationKmsKeyName(destinationKmsKeyName string) *O
 // to the destination object.
 //
 // Possible values:
-//   "authenticatedRead" - Object owner gets OWNER access, and
+//
+//	"authenticatedRead" - Object owner gets OWNER access, and
+//
 // allAuthenticatedUsers get READER access.
-//   "bucketOwnerFullControl" - Object owner gets OWNER access, and
+//
+//	"bucketOwnerFullControl" - Object owner gets OWNER access, and
+//
 // project team owners get OWNER access.
-//   "bucketOwnerRead" - Object owner gets OWNER access, and project
+//
+//	"bucketOwnerRead" - Object owner gets OWNER access, and project
+//
 // team owners get READER access.
-//   "private" - Object owner gets OWNER access.
-//   "projectPrivate" - Object owner gets OWNER access, and project team
+//
+//	"private" - Object owner gets OWNER access.
+//	"projectPrivate" - Object owner gets OWNER access, and project team
+//
 // members get access according to their roles.
-//   "publicRead" - Object owner gets OWNER access, and allUsers get
+//
+//	"publicRead" - Object owner gets OWNER access, and allUsers get
+//
 // READER access.
 func (c *ObjectsCopyCall) DestinationPredefinedAcl(destinationPredefinedAcl string) *ObjectsCopyCall {
 	c.urlParams_.Set("destinationPredefinedAcl", destinationPredefinedAcl)
@@ -8889,8 +8972,9 @@ func (c *ObjectsCopyCall) IfSourceMetagenerationNotMatch(ifSourceMetagenerationN
 // specifies the acl property, when it defaults to full.
 //
 // Possible values:
-//   "full" - Include all properties.
-//   "noAcl" - Omit the owner, acl property.
+//
+//	"full" - Include all properties.
+//	"noAcl" - Omit the owner, acl property.
 func (c *ObjectsCopyCall) Projection(projection string) *ObjectsCopyCall {
 	c.urlParams_.Set("projection", projection)
 	return c
@@ -9448,8 +9532,9 @@ func (c *ObjectsGetCall) IfMetagenerationNotMatch(ifMetagenerationNotMatch int64
 // properties to return. Defaults to noAcl.
 //
 // Possible values:
-//   "full" - Include all properties.
-//   "noAcl" - Omit the owner, acl property.
+//
+//	"full" - Include all properties.
+//	"noAcl" - Omit the owner, acl property.
 func (c *ObjectsGetCall) Projection(projection string) *ObjectsGetCall {
 	c.urlParams_.Set("projection", projection)
 	return c
@@ -9942,7 +10027,9 @@ func (c *ObjectsInsertCall) IfMetagenerationNotMatch(ifMetagenerationNotMatch in
 // KmsKeyName sets the optional parameter "kmsKeyName": Resource name of
 // the Cloud KMS key, of the form
 // projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key,
-//  that will be used to encrypt the object. Overrides the object
+//
+//	that will be used to encrypt the object. Overrides the object
+//
 // metadata's kms_key_name value, if any.
 func (c *ObjectsInsertCall) KmsKeyName(kmsKeyName string) *ObjectsInsertCall {
 	c.urlParams_.Set("kmsKeyName", kmsKeyName)
@@ -9962,16 +10049,26 @@ func (c *ObjectsInsertCall) Name(name string) *ObjectsInsertCall {
 // predefined set of access controls to this object.
 //
 // Possible values:
-//   "authenticatedRead" - Object owner gets OWNER access, and
+//
+//	"authenticatedRead" - Object owner gets OWNER access, and
+//
 // allAuthenticatedUsers get READER access.
-//   "bucketOwnerFullControl" - Object owner gets OWNER access, and
+//
+//	"bucketOwnerFullControl" - Object owner gets OWNER access, and
+//
 // project team owners get OWNER access.
-//   "bucketOwnerRead" - Object owner gets OWNER access, and project
+//
+//	"bucketOwnerRead" - Object owner gets OWNER access, and project
+//
 // team owners get READER access.
-//   "private" - Object owner gets OWNER access.
-//   "projectPrivate" - Object owner gets OWNER access, and project team
+//
+//	"private" - Object owner gets OWNER access.
+//	"projectPrivate" - Object owner gets OWNER access, and project team
+//
 // members get access according to their roles.
-//   "publicRead" - Object owner gets OWNER access, and allUsers get
+//
+//	"publicRead" - Object owner gets OWNER access, and allUsers get
+//
 // READER access.
 func (c *ObjectsInsertCall) PredefinedAcl(predefinedAcl string) *ObjectsInsertCall {
 	c.urlParams_.Set("predefinedAcl", predefinedAcl)
@@ -9983,8 +10080,9 @@ func (c *ObjectsInsertCall) PredefinedAcl(predefinedAcl string) *ObjectsInsertCa
 // specifies the acl property, when it defaults to full.
 //
 // Possible values:
-//   "full" - Include all properties.
-//   "noAcl" - Omit the owner, acl property.
+//
+//	"full" - Include all properties.
+//	"noAcl" - Omit the owner, acl property.
 func (c *ObjectsInsertCall) Projection(projection string) *ObjectsInsertCall {
 	c.urlParams_.Set("projection", projection)
 	return c
@@ -10371,8 +10469,9 @@ func (c *ObjectsListCall) Prefix(prefix string) *ObjectsListCall {
 // properties to return. Defaults to noAcl.
 //
 // Possible values:
-//   "full" - Include all properties.
-//   "noAcl" - Omit the owner, acl property.
+//
+//	"full" - Include all properties.
+//	"noAcl" - Omit the owner, acl property.
 func (c *ObjectsListCall) Projection(projection string) *ObjectsListCall {
 	c.urlParams_.Set("projection", projection)
 	return c
@@ -10695,16 +10794,26 @@ func (c *ObjectsPatchCall) IfMetagenerationNotMatch(ifMetagenerationNotMatch int
 // predefined set of access controls to this object.
 //
 // Possible values:
-//   "authenticatedRead" - Object owner gets OWNER access, and
+//
+//	"authenticatedRead" - Object owner gets OWNER access, and
+//
 // allAuthenticatedUsers get READER access.
-//   "bucketOwnerFullControl" - Object owner gets OWNER access, and
+//
+//	"bucketOwnerFullControl" - Object owner gets OWNER access, and
+//
 // project team owners get OWNER access.
-//   "bucketOwnerRead" - Object owner gets OWNER access, and project
+//
+//	"bucketOwnerRead" - Object owner gets OWNER access, and project
+//
 // team owners get READER access.
-//   "private" - Object owner gets OWNER access.
-//   "projectPrivate" - Object owner gets OWNER access, and project team
+//
+//	"private" - Object owner gets OWNER access.
+//	"projectPrivate" - Object owner gets OWNER access, and project team
+//
 // members get access according to their roles.
-//   "publicRead" - Object owner gets OWNER access, and allUsers get
+//
+//	"publicRead" - Object owner gets OWNER access, and allUsers get
+//
 // READER access.
 func (c *ObjectsPatchCall) PredefinedAcl(predefinedAcl string) *ObjectsPatchCall {
 	c.urlParams_.Set("predefinedAcl", predefinedAcl)
@@ -10715,8 +10824,9 @@ func (c *ObjectsPatchCall) PredefinedAcl(predefinedAcl string) *ObjectsPatchCall
 // properties to return. Defaults to full.
 //
 // Possible values:
-//   "full" - Include all properties.
-//   "noAcl" - Omit the owner, acl property.
+//
+//	"full" - Include all properties.
+//	"noAcl" - Omit the owner, acl property.
 func (c *ObjectsPatchCall) Projection(projection string) *ObjectsPatchCall {
 	c.urlParams_.Set("projection", projection)
 	return c
@@ -10969,7 +11079,9 @@ func (r *ObjectsService) Rewrite(sourceBucket string, sourceObject string, desti
 // "destinationKmsKeyName": Resource name of the Cloud KMS key, of the
 // form
 // projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key,
-//  that will be used to encrypt the object. Overrides the object
+//
+//	that will be used to encrypt the object. Overrides the object
+//
 // metadata's kms_key_name value, if any.
 func (c *ObjectsRewriteCall) DestinationKmsKeyName(destinationKmsKeyName string) *ObjectsRewriteCall {
 	c.urlParams_.Set("destinationKmsKeyName", destinationKmsKeyName)
@@ -10981,16 +11093,26 @@ func (c *ObjectsRewriteCall) DestinationKmsKeyName(destinationKmsKeyName string)
 // to the destination object.
 //
 // Possible values:
-//   "authenticatedRead" - Object owner gets OWNER access, and
+//
+//	"authenticatedRead" - Object owner gets OWNER access, and
+//
 // allAuthenticatedUsers get READER access.
-//   "bucketOwnerFullControl" - Object owner gets OWNER access, and
+//
+//	"bucketOwnerFullControl" - Object owner gets OWNER access, and
+//
 // project team owners get OWNER access.
-//   "bucketOwnerRead" - Object owner gets OWNER access, and project
+//
+//	"bucketOwnerRead" - Object owner gets OWNER access, and project
+//
 // team owners get READER access.
-//   "private" - Object owner gets OWNER access.
-//   "projectPrivate" - Object owner gets OWNER access, and project team
+//
+//	"private" - Object owner gets OWNER access.
+//	"projectPrivate" - Object owner gets OWNER access, and project team
+//
 // members get access according to their roles.
-//   "publicRead" - Object owner gets OWNER access, and allUsers get
+//
+//	"publicRead" - Object owner gets OWNER access, and allUsers get
+//
 // READER access.
 func (c *ObjectsRewriteCall) DestinationPredefinedAcl(destinationPredefinedAcl string) *ObjectsRewriteCall {
 	c.urlParams_.Set("destinationPredefinedAcl", destinationPredefinedAcl)
@@ -11088,8 +11210,9 @@ func (c *ObjectsRewriteCall) MaxBytesRewrittenPerCall(maxBytesRewrittenPerCall i
 // specifies the acl property, when it defaults to full.
 //
 // Possible values:
-//   "full" - Include all properties.
-//   "noAcl" - Omit the owner, acl property.
+//
+//	"full" - Include all properties.
+//	"noAcl" - Omit the owner, acl property.
 func (c *ObjectsRewriteCall) Projection(projection string) *ObjectsRewriteCall {
 	c.urlParams_.Set("projection", projection)
 	return c
@@ -11851,16 +11974,26 @@ func (c *ObjectsUpdateCall) IfMetagenerationNotMatch(ifMetagenerationNotMatch in
 // predefined set of access controls to this object.
 //
 // Possible values:
-//   "authenticatedRead" - Object owner gets OWNER access, and
+//
+//	"authenticatedRead" - Object owner gets OWNER access, and
+//
 // allAuthenticatedUsers get READER access.
-//   "bucketOwnerFullControl" - Object owner gets OWNER access, and
+//
+//	"bucketOwnerFullControl" - Object owner gets OWNER access, and
+//
 // project team owners get OWNER access.
-//   "bucketOwnerRead" - Object owner gets OWNER access, and project
+//
+//	"bucketOwnerRead" - Object owner gets OWNER access, and project
+//
 // team owners get READER access.
-//   "private" - Object owner gets OWNER access.
-//   "projectPrivate" - Object owner gets OWNER access, and project team
+//
+//	"private" - Object owner gets OWNER access.
+//	"projectPrivate" - Object owner gets OWNER access, and project team
+//
 // members get access according to their roles.
-//   "publicRead" - Object owner gets OWNER access, and allUsers get
+//
+//	"publicRead" - Object owner gets OWNER access, and allUsers get
+//
 // READER access.
 func (c *ObjectsUpdateCall) PredefinedAcl(predefinedAcl string) *ObjectsUpdateCall {
 	c.urlParams_.Set("predefinedAcl", predefinedAcl)
@@ -11871,8 +12004,9 @@ func (c *ObjectsUpdateCall) PredefinedAcl(predefinedAcl string) *ObjectsUpdateCa
 // properties to return. Defaults to full.
 //
 // Possible values:
-//   "full" - Include all properties.
-//   "noAcl" - Omit the owner, acl property.
+//
+//	"full" - Include all properties.
+//	"noAcl" - Omit the owner, acl property.
 func (c *ObjectsUpdateCall) Projection(projection string) *ObjectsUpdateCall {
 	c.urlParams_.Set("projection", projection)
 	return c
@@ -12172,8 +12306,9 @@ func (c *ObjectsWatchAllCall) Prefix(prefix string) *ObjectsWatchAllCall {
 // properties to return. Defaults to noAcl.
 //
 // Possible values:
-//   "full" - Include all properties.
-//   "noAcl" - Omit the owner, acl property.
+//
+//	"full" - Include all properties.
+//	"noAcl" - Omit the owner, acl property.
 func (c *ObjectsWatchAllCall) Projection(projection string) *ObjectsWatchAllCall {
 	c.urlParams_.Set("projection", projection)
 	return c

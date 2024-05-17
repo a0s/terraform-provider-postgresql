@@ -25,6 +25,7 @@ type featureName uint
 
 const (
 	featureCreateRoleWith featureName = iota
+	featureDatabaseOwnerRole
 	featureDBAllowConnections
 	featureDBIsTemplate
 	featureFallbackApplicationName
@@ -85,6 +86,8 @@ var (
 		// Column procpid was replaced by pid in pg_stat_activity
 		// for Postgresql >= 9.2 and above
 		featurePid: semver.MustParseRange(">=9.2.0"),
+
+		featureDatabaseOwnerRole: semver.MustParseRange(">=15.0.0"),
 	}
 )
 

@@ -77,20 +77,24 @@ func (c *FileChecksum) checksum(source string) error {
 // extractChecksum will return a FileChecksum based on the 'checksum'
 // parameter of u.
 // ex:
-//  http://hashicorp.com/terraform?checksum=<checksumValue>
-//  http://hashicorp.com/terraform?checksum=<checksumType>:<checksumValue>
-//  http://hashicorp.com/terraform?checksum=file:<checksum_url>
+//
+//	http://hashicorp.com/terraform?checksum=<checksumValue>
+//	http://hashicorp.com/terraform?checksum=<checksumType>:<checksumValue>
+//	http://hashicorp.com/terraform?checksum=file:<checksum_url>
+//
 // when checksumming from a file, extractChecksum will go get checksum_url
 // in a temporary directory, parse the content of the file then delete it.
 // Content of files are expected to be BSD style or GNU style.
 //
 // BSD-style checksum:
-//  MD5 (file1) = <checksum>
-//  MD5 (file2) = <checksum>
+//
+//	MD5 (file1) = <checksum>
+//	MD5 (file2) = <checksum>
 //
 // GNU-style:
-//  <checksum>  file1
-//  <checksum> *file2
+//
+//	<checksum>  file1
+//	<checksum> *file2
 //
 // see parseChecksumLine for more detail on checksum file parsing
 func (c *Client) extractChecksum(u *url.URL) (*FileChecksum, error) {
